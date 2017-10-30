@@ -4,10 +4,13 @@
 #' \email{zhouzw@@sioc.ac.cn}
 #' @param raw.data The smiles structure as vector format.
 #' @param is.output Whether output the csv file? The default is TRUE.
+#' @param output.address The output address of csv file. The default is NULL.
 #' @return a matrix (n*3) including formula, exact mass, and charge
 #' @example Info_Cal(raw.data=raw.data)
 
-Info_Cal <- function(raw.data, is.output=TRUE){
+Info_Cal <- function(raw.data,
+                     is.output=TRUE,
+                     output.address=NULL){
   temp <- rcdk::parse.smiles(raw.data)
 
   cat("Start calculate the Formula and Exact mass\n")
@@ -35,7 +38,12 @@ Info_Cal <- function(raw.data, is.output=TRUE){
 
   if (is.output==TRUE) {
     cat("Start output result\n")
-    temp <- paste("info", "csv", sep = ".")
+    if (is.null(output.address)) {
+      temp <- paste("info", "csv", sep = ".")
+    } else {
+      temp <- paste(output.address, "info.csv", sep = "/")
+    }
+
     write.csv(result, temp, row.names = F)
   }
 

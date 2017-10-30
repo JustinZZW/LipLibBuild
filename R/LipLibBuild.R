@@ -5,12 +5,14 @@
 #' @param sdf.file The file name of sdf file
 #' @param smile.file The file name of smile file
 #' @param is.output The output csv file. The default is TRUE.
+#' @param output.address The output address of csv file. The default is NULL.
 #'
 #' @example LipLibBuild(sdf.file="PC.sdf", smile.file="PC.smile")
 
 LipLibBuild <- function(sdf.file,
                         smile.file,
-                        is.output=TRUE){
+                        is.output=TRUE,
+                        output.address=NULL){
   raw.data <- readr::read_lines("GPAbbrev.sdf")
   raw.smiles <- readr::read_lines("GPAbbrev.sdf.smiles")
 
@@ -49,7 +51,12 @@ LipLibBuild <- function(sdf.file,
   return(result)
 
   if (is.output==TRUE) {
-    temp <- paste(getwd(), "library", sep = "/")
+    if (is.null(output.address)) {
+      temp <- paste(getwd(), "library", sep = "/")
+    } else {
+      temp <- paste(output.address, "library", sep = "/")
+    }
+
     dir.create(path = temp)
     temp <- paste(temp, "lipid_lib.csv", sep = "/")
     write.csv(result, file = temp, row.names = F)
