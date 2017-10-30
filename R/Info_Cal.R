@@ -7,8 +7,7 @@
 #' @example Info_Cal(raw.data=raw.data)
 
 Info_Cal <- function(raw.data){
-  temp <- raw.data$smiles[1:5]
-  temp <- rcdk::parse.smiles(temp)
+  temp <- rcdk::parse.smiles(raw.data)
 
   formula.info <- lapply(seq(length(temp)), function(i){
     if (i %in% seq(length(temp), length.out = 11)) {
