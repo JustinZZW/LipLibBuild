@@ -7,11 +7,10 @@
 Info_Cal(raw.data)
 }
 \arguments{
-\item{raw.data}{The smiles}
-
-\item{smile.file}{The file name of smile file}
-
-\item{is.output}{The output csv file. The default is TRUE.}
+\item{raw.data}{The smiles structure as vector format.}
+}
+\value{
+a matrix (n*3) including formula, exact mass, and charge
 }
 \description{
 calculate formula, exact mass, and charge

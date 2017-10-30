@@ -46,6 +46,8 @@ LipLibBuild <- function(sdf.file,
                        sys.name=sys.name,
                        stringsAsFactors = F)
 
+  return(result)
+
   if (is.output==TRUE) {
     temp <- paste(getwd(), "library", sep = "/")
     dir.create(path = temp)

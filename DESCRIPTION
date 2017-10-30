@@ -1,7 +1,7 @@
 Package: LipLibBuild
 Type: Package
 Title: LipLibBuild
-Version: 0.0.9000
+Version: 0.0.9001
 Author: Zhiwei Zhou
 Maintainer: Zhiwei Zhou <zhouzw@sioc.ac.cn>
 Description: More about what it does (maybe more than one line)
