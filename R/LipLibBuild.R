@@ -1,4 +1,4 @@
-#' @tiile Lipid library build
+#' @title Lipid library build
 #' @description  Build lipid library based on sdf file and smile file
 #' @author Zhiwei Zhou
 #' \email{zhouzw@@sioc.ac.cn}
@@ -6,8 +6,7 @@
 #' @param smile.file The file name of smile file
 #' @param is.output The output csv file. The default is TRUE.
 #'
-#' @example
-#' LipLibBuild(sdf.file="PC.sdf", smile.file="PC.smile")
+#' @example LipLibBuild(sdf.file="PC.sdf", smile.file="PC.smile")
 
 LipLibBuild <- function(sdf.file,
                         smile.file,
