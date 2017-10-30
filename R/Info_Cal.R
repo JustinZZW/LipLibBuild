@@ -12,9 +12,10 @@ Info_Cal <- function(raw.data, is.output=TRUE){
 
   cat("Start calculate the Formula and Exact mass\n")
   formula.info <- lapply(seq(length(temp)), function(i){
-    if (i %in% seq(length(temp), length.out = 11)) {
-      cat(round((i/length(temp))*100, digits = 2)); cat("%"); cat(" ")
-    }
+    # if (i %in% seq(length(temp), length.out = 11)) {
+    #   cat(round((i/length(temp))*100, digits = 2)); cat("%"); cat(" ")
+    # }
+    cat(i); cat(" ")
 
     temp.formula <- temp[[i]]
     temp.result <- rcdk::get.mol2formula(temp.formula)
