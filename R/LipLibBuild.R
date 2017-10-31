@@ -13,8 +13,11 @@ LipLibBuild <- function(sdf.file,
                         smile.file,
                         is.output=TRUE,
                         output.address=NULL){
-  raw.data <- readr::read_lines("GPAbbrev.sdf")
-  raw.smiles <- readr::read_lines("GPAbbrev.sdf.smiles")
+  # raw.data <- readr::read_lines("GPAbbrev.sdf")
+  # raw.smiles <- readr::read_lines("GPAbbrev.sdf.smiles")
+
+  raw.data <- readr::read_lines(sdf.file)
+  raw.smiles <- readr::read_lines(smile.file)
 
   idx.abbr <- which(raw.data==">  <Abbrev>")+1
   idx.category <- which(raw.data==">  <LM Category>")+1
