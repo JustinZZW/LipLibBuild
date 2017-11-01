@@ -4,10 +4,14 @@
 \alias{Info_Cal}
 \title{Info_cal}
 \usage{
-Info_Cal(raw.data)
+Info_Cal(raw.data, is.output = TRUE, output.address = NULL)
 }
 \arguments{
 \item{raw.data}{The smiles structure as vector format.}
+
+\item{is.output}{Whether output the csv file? The default is TRUE.}
+
+\item{output.address}{The output address of csv file. The default is NULL.}
 }
 \value{
 a matrix (n*3) including formula, exact mass, and charge

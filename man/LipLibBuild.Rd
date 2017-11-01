@@ -4,7 +4,7 @@
 \alias{LipLibBuild}
 \title{Lipid library build}
 \usage{
-LipLibBuild(sdf.file, smile.file, is.output = TRUE)
+LipLibBuild(sdf.file, smile.file, is.output = TRUE, output.address = NULL)
 }
 \arguments{
 \item{sdf.file}{The file name of sdf file}
@@ -12,6 +12,8 @@ LipLibBuild(sdf.file, smile.file, is.output = TRUE)
 \item{smile.file}{The file name of smile file}
 
 \item{is.output}{The output csv file. The default is TRUE.}
+
+\item{output.address}{The output address of csv file. The default is NULL.}
 }
 \description{
 Build lipid library based on sdf file and smile file
