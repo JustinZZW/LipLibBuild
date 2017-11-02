@@ -4,6 +4,7 @@
 #' \email{zhouzw@@sioc.ac.cn}
 #' @param sdf.file The file name of sdf file
 #' @param smile.file The file name of smile file
+#' @param category The category of lipids. "GP": Glycerophospholipids; "SP": Sphingolipids; "GL": Glycerolipids; The default is "GP"
 #' @param is.output The output csv file. The default is TRUE.
 #' @param output.address The output address of csv file. The default is NULL.
 #'
@@ -11,6 +12,7 @@
 
 LipLibBuild <- function(sdf.file,
                         smile.file,
+                        category="GP",
                         is.output=TRUE,
                         output.address=NULL){
   # raw.data <- readr::read_lines("GPAbbrev.sdf")
@@ -39,17 +41,40 @@ LipLibBuild <- function(sdf.file,
   sn2.double.bonds <- as.numeric(raw.data[idx.sn2.double.bonds])
   sys.name <- as.character(raw.data[idx.sys.name])
 
-  result <- data.frame(abbr.name=abbr.name,
-                       smiles=raw.smiles,
-                       category=category,
-                       main.class=main.class,
-                       sub.class=sub.class,
-                       sn1.chain.length=sn1.chain.length,
-                       sn1.double.bonds=sn1.double.bonds,
-                       sn2.chain.length=sn2.chain.length,
-                       sn2.double.bonds=sn2.double.bonds,
-                       sys.name=sys.name,
-                       stringsAsFactors = F)
+  if (category=="GP" | category=="SP") {
+    result <- data.frame(abbr.name=abbr.name,
+                         smiles=raw.smiles,
+                         category=category,
+                         main.class=main.class,
+                         sub.class=sub.class,
+                         sn1.chain.length=sn1.chain.length,
+                         sn1.double.bonds=sn1.double.bonds,
+                         sn2.chain.length=sn2.chain.length,
+                         sn2.double.bonds=sn2.double.bonds,
+                         sys.name=sys.name,
+                         stringsAsFactors = F)
+  }
+
+  if (category=="GL") {
+    idx.sn3.chain.length <- which(raw.data==">  <Sn3 Chain Length>")+1
+    idx.sn3.double.bonds <- which(raw.data==">  <Sn3 Double Bonds>")+1
+    sn3.chain.length <- as.numeric(raw.data[idx.sn3.chain.length])
+    sn3.double.bonds <- as.numeric(raw.data[idx.sn3.double.bonds])
+    result <- data.frame(abbr.name=abbr.name,
+                         smiles=raw.smiles,
+                         category=category,
+                         main.class=main.class,
+                         sub.class=sub.class,
+                         sn1.chain.length=sn1.chain.length,
+                         sn1.double.bonds=sn1.double.bonds,
+                         sn2.chain.length=sn2.chain.length,
+                         sn2.double.bonds=sn2.double.bonds,
+                         sn3.chain.length=sn3.chain.length,
+                         sn3.double.bonds=sn3.double.bonds,
+                         sys.name=sys.name,
+                         stringsAsFactors = F)
+  }
+
 
   return(result)
 
