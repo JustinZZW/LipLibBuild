@@ -4,6 +4,7 @@
 #' \email{zhouzw@@sioc.ac.cn}
 #' @param raw.data The csv file name of raw data.
 #' @param raw.MD The csv file name of Molecular Descriptor.
+#' @param category The category of lipids, "GP", "SP" and "GL". Default: "GP"
 #' @param bulk.std.name The bulk structure name of each classes.
 #'
 #' @example
@@ -12,6 +13,7 @@
 
 split_subclass <- function(raw.data="result.csv",
                            raw.MD="Define-descriptors by rcdk.csv",
+                           category="GP",
                            bulk.std.name){
   raw.data <- readr::read_csv(file = raw.data)
   raw.MD <- readr::read_csv(file = raw.MD)
@@ -36,6 +38,11 @@ split_subclass <- function(raw.data="result.csv",
 
     temp.nc <- temp.data$sn1.chain.length+temp.data$sn2.chain.length
     temp.db <- temp.data$sn1.double.bonds+temp.data$sn2.double.bonds
+    if (category=="GL") {
+      temp.nc <- temp.data$sn1.chain.length + temp.data$sn2.chain.length + temp.data$sn3.chain.length
+      temp.db <- temp.data$sn1.double.bonds + temp.data$sn2.double.bonds + temp.data$sn3.double.bonds
+    }
+
     temp <- paste(temp.nc, temp.db, sep = ":")
     bulk.str <- paste(paste(bulk.std.name[i], temp, sep = ""), ")", sep = "")
     lipid.map.id <- sapply(seq(nrow(temp.data)), function(i){
