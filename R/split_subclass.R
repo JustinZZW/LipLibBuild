@@ -29,7 +29,7 @@ split_subclass <- function(raw.data="result.csv",
   lapply(seq(length(idx.subclass)), function(i){
     temp.idx <- idx.subclass[[i]]
     temp.data <- raw.data[temp.idx,]
-    temp.MD <- raw.data[temp.idx,]
+    temp.MD <- raw.MD[temp.idx,]
 
     temp.num <- formatC(seq(length(temp.idx)), flag = '0', width = 6, mode = "integer")
     temp.num <- paste(temp.data$sub.class, temp.num, sep = "")
