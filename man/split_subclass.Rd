@@ -5,12 +5,14 @@
 \title{split_subclass}
 \usage{
 split_subclass(raw.data = "result.csv",
-  raw.MD = "Define-descriptors by rcdk.csv", bulk.std.name)
+  raw.MD = "Define-descriptors by rcdk.csv", category = "GP", bulk.std.name)
 }
 \arguments{
 \item{raw.data}{The csv file name of raw data.}
 
 \item{raw.MD}{The csv file name of Molecular Descriptor.}
+
+\item{category}{The category of lipids, "GP", "SP" and "GL". Default: "GP"}
 
 \item{bulk.std.name}{The bulk structure name of each classes.}
 }

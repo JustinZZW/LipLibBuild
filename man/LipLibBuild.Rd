@@ -4,12 +4,15 @@
 \alias{LipLibBuild}
 \title{Lipid library build}
 \usage{
-LipLibBuild(sdf.file, smile.file, is.output = TRUE, output.address = NULL)
+LipLibBuild(sdf.file, smile.file, category = "GP", is.output = TRUE,
+  output.address = NULL)
 }
 \arguments{
 \item{sdf.file}{The file name of sdf file}
 
 \item{smile.file}{The file name of smile file}
+
+\item{category}{The category of lipids. "GP": Glycerophospholipids; "SP": Sphingolipids; "GL": Glycerolipids; The default is "GP"}
 
 \item{is.output}{The output csv file. The default is TRUE.}
 
