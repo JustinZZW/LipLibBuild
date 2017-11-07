@@ -8,7 +8,7 @@ split_msms <- function(file.name){
   raw.data <- readxl::read_xlsx(file.name)
   col.list <- colnames(raw.data)
   file.address <- strsplit(x = file.name, split = "\\.")[[1]][1]
-  file.address <- paste(getwd(), file.address, sep = "/")
+  file.address <- paste(getwd(), "split_msms_library", file.address, sep = "/")
   dir.create(file.address, recursive = T)
 
   temp.idx <- grep(pattern = "HP", x = col.list)
