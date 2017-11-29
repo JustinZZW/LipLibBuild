@@ -20,7 +20,7 @@ generate_MSMS_table <- function(com.name,
                                          "[M-H]", "[M+HCOO]"),
                                 ce=20,
                                 charge=1,
-                                rt="",
+                                rt=0,
                                 delta.rt="",
                                 iso.width=c("Wide",
                                             "Medium",
@@ -31,6 +31,8 @@ generate_MSMS_table <- function(com.name,
   } else {
     ext.mass <- as.numeric(ext.mass)
   }
+
+  options(warn = -1)
 
   ext.mass <- sapply(seq(length(adduct)), function(i){
     temp <- switch(adduct[i],
