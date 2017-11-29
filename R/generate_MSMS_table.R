@@ -40,7 +40,7 @@ generate_MSMS_table <- function(com.name,
                    "[M+Na]"={ext.mass+22.9898},
                    "[M+NH4]"={ext.mass+18.0344},
                    "[M-H]"={ext.mass-1.0078},
-                   "[M+HCOO]"={ext.mass-44.9977})
+                   "[M+HCOO]"={ext.mass+44.9977})
   })
 
   iso.width <- switch (match.arg(iso.width),
