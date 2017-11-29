@@ -49,6 +49,9 @@ generate_MSMS_table <- function(com.name,
                        "Narrow"={"Narrow (~1.3 m/z)"}
   )
 
+  if (length(ce) > 1) {
+    ce <- rep(ce, each=length(ext.mass))
+  }
 
   result <- data.frame(V1=TRUE,
                        V2=ext.mass,
