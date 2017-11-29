@@ -61,8 +61,9 @@ generate_MSMS_table <- function(com.name,
 
   temp <- c('On', 'Prec. m/z', 'Z', 'Ret. Time (min)', 'Time (min) Delta', 'Iso. Width', 'Collision Energy', 'Acquisition Time (ms/spec)')
   result <- rbind(c("TargetedMSMSTable", rep("", 7)), temp, result)
+  colnames(result) <- ""
 
   temp <- paste(com.name, "csv", sep = ".")
-  write.csv(result, temp, row.names = F, col.names = F)
+  write.table(x = result, file = temp, sep = ",",row.names = F, col.names = F)
 
 }
