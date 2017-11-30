@@ -94,14 +94,15 @@ msms_plot <- function(spectra.name=NULL, data.name=NULL, precusor.mz=NULL){
     if (!is.null(data.name)) {
       load(data.name)
       raw.data <- result[[result]]
-      product.mz <- result[[precusor.mz]]
+      precusor.mz <- result[[precusor.mz]]
     } else {
       stop("Please input spectra file name or r data name.\n")
     }
   } else {
     raw.data <- readr::read_csv(spectra.name)
-    product.mz <- raw.data$mz
   }
+
+  product.mz <- raw.data$mz
 
 
   if (is.null(precusor.mz)) {
