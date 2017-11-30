@@ -5,8 +5,8 @@
 \title{generate_MSMS_table}
 \usage{
 generate_MSMS_table(com.name, ext.mass, adduct = c("[M+H]", "[M+Na]",
-  "[M+NH4]", "[M-H]", "[M+HCOO]"), ce = 20, charge = 1, rt = "",
-  delta.rt = "", iso.width = c("Wide", "Medium", "Narrow"))
+  "[M+NH4]", "[M-H]", "[M+HCOO]"), ce = 20, charge = 1, rt = 0,
+  delta.rt = 0.5, iso.width = c("Wide", "Medium", "Narrow"))
 }
 \arguments{
 \item{com.name}{Tompound name.}
