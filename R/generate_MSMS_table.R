@@ -87,7 +87,6 @@ generate_MSMS_table <- function(com.name,
 #' @example
 
 cal_ion_mz <- function(ext.mass, name=NULL){
-  ext.mass <- as.numeric(match.arg(ext.mass))
   ext.mass.1 <- ext.mass+1.0078
   ext.mass.2 <- ext.mass+22.9898
   ext.mass.3 <- ext.mass+18.0344
