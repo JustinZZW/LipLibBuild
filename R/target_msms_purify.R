@@ -69,7 +69,7 @@ target_msms_purify <- function(file.name=NULL,
 
   # save Intermediate Data
   dir.create(path = file.path(getwd(), "00 Intermediate Data"))
-  result <- list(result=result, precusor.mz=precusor.mz)
+  result <- list(result=result, precusor.mz=target.mass)
   output.name2 <- file.path(getwd(),
                             "00 Intermediate Data",
                             file.name)
