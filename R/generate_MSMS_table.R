@@ -21,7 +21,7 @@ generate_MSMS_table <- function(com.name,
                                 ce=20,
                                 charge=1,
                                 rt=0,
-                                delta.rt="",
+                                delta.rt=0.5,
                                 iso.width=c("Wide",
                                             "Medium",
                                             "Narrow")
@@ -69,6 +69,51 @@ generate_MSMS_table <- function(com.name,
   colnames(result) <- ""
 
   temp <- paste(com.name, "csv", sep = ".")
-  write.table(x = result, file = temp, sep = ",",row.names = F, col.names = F)
+  write.table(x = result,
+              file = temp,
+              sep = ",",
+              row.names = F,
+              col.names = F)
 
+}
+
+
+#' @title cal_ion_mz
+#' @description  generate adducts mz
+#' @author Zhiwei Zhou
+#' \email{zhouzw@@sioc.ac.cn}
+#' @param ext.mass The exact mass of compound.
+#' @param name The name of csv file name. Default: "ext_mass_table.csv"
+#' @example
+
+cal_ion_mz <- function(ext.mass, name=NULL){
+  ext.mass <- as.numeric(match.arg(ext.mass))
+  ext.mass.1 <- ext.mass+1.0078
+  ext.mass.2 <- ext.mass+22.9898
+  ext.mass.3 <- ext.mass+18.0344
+  ext.mass.4 <- ext.mass-1.0078
+  ext.mass.5 <- ext.mass+44.9977
+
+  result <- data.frame(M=ext.mass,
+                       'M+H'=ext.mass.1,
+                       'M+Na'=ext.mass.2,
+                       'M+NH4'=ext.mass.3,
+                       'M-H'=ext.mass.4,
+                       'M+HCOO'=ext.mass.5,
+                       stringsAsFactors = F)
+
+  temp <- c("M", "[M+H]", "[M+Na]", "[M+NH4]", "[M-H]", "[M+HCOO]")
+  result <- rbind(temp, result)
+
+  if (is.null(name)) {
+    name <- "ext_mass_table.csv"
+  } else {
+    name <- paste(name, "csv", sep = ".")
+  }
+
+  write.table(result,
+              file = name,
+              sep = ",",
+              row.names = F,
+              col.names = F)
 }
