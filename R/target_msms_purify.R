@@ -6,7 +6,6 @@
 #' @param abs.min.count The minimnum value of absolute intensity. Default: 100.
 #' @param rela.min.count The minimnum value of relative intensity (1000 as benchmark). Default: 1.
 
-
 target_msms_purify <- function(file.name=NULL,
                                abs.min.count=100,
                                rela.min.count=1){
@@ -57,18 +56,76 @@ target_msms_purify <- function(file.name=NULL,
                              int.rel.thr = 0.2)
 
   file.name <- strsplit(x = file.name, split = ".cs")[[1]][1]
-  file.name <- paste(paste(file.name, "Purfi MSMS"),
+  output.name <- paste(paste(file.name, "Purfi MSMS"),
                      "csv",
                      sep = ".")
+  options(warn = -1)
 
   dir.create(file.path(getwd(),"01 Purified MSMS spectra"),
              recursive = TRUE)
-  file.name <- file.path(getwd(), "01 Purified MSMS spectra", file.name)
+  output.name <- file.path(getwd(), "01 Purified MSMS spectra", output.name)
 
+  write.csv(result, file = output.name, row.names = F)
 
-  write.csv(result, file = file.name, row.names = F)
+  # save Intermediate Data
+  dir.create(path = file.path(getwd(), "00 Intermediate Data"))
+  result <- list(result=result, precusor.mz=precusor.mz)
+  output.name2 <- file.path(getwd(),
+                            "00 Intermediate Data",
+                            file.name)
+  save(result, file = output.name2)
 }
 
+
+# msms_plot ---------------------------------------
+
+#' @title msms_plot
+#' @description  plot msms spectra of purified spectra
+#' @author Zhiwei Zhou
+#' \email{zhouzw@@sioc.ac.cn}
+#' @param spectra.name The csv file name of spectra. Default: NULL
+#' @param data.name The R Dataname after purification.
+#' @param precusor.mz The precusor mz. Default: NULL
+
+msms_plot <- function(spectra.name=NULL, data.name=NULL, precusor.mz=NULL){
+
+  # load data or read csv file
+  if (is.null(spectra.name)) {
+    if (!is.null(data.name)) {
+      load(data.name)
+      raw.data <- result[[result]]
+      product.mz <- result[[precusor.mz]]
+    } else {
+      stop("Please input spectra file name or r data name.\n")
+    }
+  } else {
+    raw.data <- readr::read_csv(spectra.name)
+    product.mz <- raw.data$mz
+  }
+
+
+  if (is.null(precusor.mz)) {
+    x.range <- c(0, 1.05*max(product.mz))
+  } else {
+    x.range <- c(0, 1.05*precusor.mz)
+  }
+
+  int.plot <- raw.data$int/max(raw.data$int)
+  tag <- strsplit(x = spectra.name, split = ".csv")[[1]]
+  tag.name <- paste(tag, "pdf", sep = ".")
+
+  pdf(file = tag.name, width = 8, height = 4)
+  plot(raw.data$mz, int.plot, type = "h", lwd=2, xlim = x.range, col="dodgerblue", main = tag, xlab="m/z", ylab="Intensity")
+  abline(h=0, lwd=1)
+
+  dev.off()
+  # text(x = raw.data$mz, y = raw.data$int, labels = raw.data$mz)
+}
+
+
+
+
+# RemoveRingEffect -------------------------------------
 RemoveRingEffect <- function(spec, mz.diff.thr = 0.3, int.rel.thr = 0.2) {
   nr.ring <- nrow(spec) + 1
   mz <- spec[, 'mz']
