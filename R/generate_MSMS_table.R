@@ -118,5 +118,6 @@ cal_ion_mz <- function(ext.mass, name=NULL, is.output=FALSE){
                 col.names = F)
   }
 
-  cat(result)
+  result
+
 }
