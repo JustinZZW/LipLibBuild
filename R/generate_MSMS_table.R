@@ -86,7 +86,7 @@ generate_MSMS_table <- function(com.name,
 #' @param name The name of csv file name. Default: "ext_mass_table.csv"
 #' @example
 
-cal_ion_mz <- function(ext.mass, name=NULL){
+cal_ion_mz <- function(ext.mass, name=NULL, is.output=FALSE){
   ext.mass.1 <- ext.mass+1.0078
   ext.mass.2 <- ext.mass+22.9898
   ext.mass.3 <- ext.mass+18.0344
@@ -110,9 +110,13 @@ cal_ion_mz <- function(ext.mass, name=NULL){
     name <- paste(name, "csv", sep = ".")
   }
 
-  write.table(result,
-              file = name,
-              sep = ",",
-              row.names = F,
-              col.names = F)
+  if (is.output==TRUE){
+    write.table(result,
+                file = name,
+                sep = ",",
+                row.names = F,
+                col.names = F)
+  }
+
+  cat(result)
 }
