@@ -93,8 +93,8 @@ msms_plot <- function(spectra.name=NULL, data.name=NULL, precusor.mz=NULL){
   if (is.null(spectra.name)) {
     if (!is.null(data.name)) {
       load(data.name)
-      raw.data <- result[[result]]
-      precusor.mz <- result[[precusor.mz]]
+      raw.data <- result[["result"]]
+      precusor.mz <- result[["precusor.mz"]]
     } else {
       stop("Please input spectra file name or r data name.\n")
     }
@@ -112,7 +112,12 @@ msms_plot <- function(spectra.name=NULL, data.name=NULL, precusor.mz=NULL){
   }
 
   int.plot <- raw.data$int/max(raw.data$int)
-  tag <- strsplit(x = spectra.name, split = ".csv")[[1]]
+  if (!is.null(spectra.name)) {
+    tag <- strsplit(x = spectra.name, split = ".csv")[[1]]
+  } else {
+    tag <- data.name
+  }
+
   tag.name <- paste(tag, "pdf", sep = ".")
 
   pdf(file = tag.name, width = 8, height = 4)
