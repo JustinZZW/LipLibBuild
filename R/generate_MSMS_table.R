@@ -4,6 +4,7 @@
 #' \email{zhouzw@@sioc.ac.cn}
 #' @param com.name Tompound name.
 #' @param ext.mass The exact mass of compound.
+#' @param mz The m/z value of adduct. If it inputted, the ext.mass will be replaced. Default: NULL
 #' @param adduct The adduct form to dissociation, including "[M+H]", "[M+Na]", "[M+NH4]","[M-H]", "[M+HCOO]"
 #' @param ce The collision energy. Default: 20V
 #' @param charge The charge form of ion. Default: 1
@@ -16,6 +17,7 @@
 
 generate_MSMS_table <- function(com.name,
                                 ext.mass,
+                                mz=NULL,
                                 adduct=c("[M+H]", "[M+Na]", "[M+NH4]",
                                          "[M-H]", "[M+HCOO]"),
                                 ce=20,
@@ -42,6 +44,10 @@ generate_MSMS_table <- function(com.name,
                    "[M-H]"={ext.mass-1.0078},
                    "[M+HCOO]"={ext.mass+44.9977})
   })
+
+  if (!is.null(mz)){
+    ext.mass <- m/z
+  }
 
   iso.width <- switch (match.arg(iso.width),
                        "Wide"={"Wide (~9 m/z)"},

@@ -4,14 +4,16 @@
 \alias{generate_MSMS_table}
 \title{generate_MSMS_table}
 \usage{
-generate_MSMS_table(com.name, ext.mass, adduct = c("[M+H]", "[M+Na]",
-  "[M+NH4]", "[M-H]", "[M+HCOO]"), ce = 20, charge = 1, rt = 0,
+generate_MSMS_table(com.name, ext.mass, mz = NULL, adduct = c("[M+H]",
+  "[M+Na]", "[M+NH4]", "[M-H]", "[M+HCOO]"), ce = 20, charge = 1, rt = 0,
   delta.rt = 0.5, iso.width = c("Wide", "Medium", "Narrow"))
 }
 \arguments{
 \item{com.name}{Tompound name.}
 
 \item{ext.mass}{The exact mass of compound.}
+
+\item{mz}{The m/z value of adduct. If it inputted, the ext.mass will be replaced. Default: NULL}
 
 \item{adduct}{The adduct form to dissociation, including "[M+H]", "[M+Na]", "[M+NH4]","[M-H]", "[M+HCOO]"}
 
