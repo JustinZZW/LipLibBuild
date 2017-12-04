@@ -46,7 +46,7 @@ generate_MSMS_table <- function(com.name,
   })
 
   if (!is.null(mz)){
-    ext.mass <- m/z
+    ext.mass <- mz
   }
 
   iso.width <- switch (match.arg(iso.width),
