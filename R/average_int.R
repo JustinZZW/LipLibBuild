@@ -2,6 +2,8 @@
 #' @author Zhiwei Zhou
 #' @description Averge intensity of same fragment in multiple file.
 #' @param dir.path the files direction path
+#' @return avg.data list; avg.result: average result for each fragment;
+#'     int.result: intensity of all files
 
 average_int <- function(dir.path="."){
   raw.data <- lapply(seq(length(dir(dir.path))), function(i){
@@ -40,4 +42,7 @@ average_int <- function(dir.path="."){
                            stringsAsFactors = F)
 
   write.csv(avg.result, "intensity template.csv", row.names = F)
+
+  avg.data <- list(avg.result=avg.result, int.result=int.result)
+  save(avg.data, file = "avg.data")
 }
