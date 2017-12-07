@@ -10,7 +10,7 @@ average_int <- function(dir.path="."){
     temp <- readr::read_csv(dir()[i])
   })
 
-  all.annotation <- sapply(raw.data, function(x){
+  all.annotation <- lapply(raw.data, function(x){
     x$annotation
   })
 
