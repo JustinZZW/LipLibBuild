@@ -20,6 +20,11 @@ target_msms_purify <- function(file.name=NULL,
                         start = regexpr(text = info, pattern = "@")+7,
                         stop = regexpr(text = info, pattern = "\\[")-1)
   target.mass <- as.numeric(target.mass)
+
+  if (is.na(target.mass)) {
+    stop("Please check the data format.\n")
+  }
+
   raw.data <- raw.data[-c(1:2)]
 
   # extract msms information
