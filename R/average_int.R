@@ -41,8 +41,10 @@ average_int <- function(dir.path="."){
                            int=avg.result,
                            stringsAsFactors = F)
 
-  write.csv(avg.result, "intensity template.csv", row.names = F)
+  temp <- file.path(dir.path, "intensity template.csv")
+  write.csv(avg.result, temp, row.names = F)
 
+  temp <- file.path(dir.path, "avg.data")
   avg.data <- list(avg.result=avg.result, int.result=int.result)
-  save(avg.data, file = "avg.data")
+  save(avg.data, file = temp)
 }
