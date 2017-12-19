@@ -1,10 +1,10 @@
 #' @title build_msms_lib
 #' @author Zhiwei Zhou
 #' \email{zhozw@@sioc.ac.cn}
-#' @param dir.path directory path
+#' @param dir.path directory path.
 #' @param adduct the adduct type. It supports "[M+H]", "[M+Na]", "[M+NH4]", "[M-H]", "[M+HCOO]"
 
-build_msms_lib <- function(dir.path,
+build_msms_lib <- function(dir.path=".",
                            adduct=c("[M+H]", "[M+Na]", "[M+NH4]",
                                     "[M-H]", "[M+HCOO]")){
   adduct <- match.arg(adduct)
