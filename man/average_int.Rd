@@ -9,6 +9,10 @@ average_int(dir.path = ".")
 \arguments{
 \item{dir.path}{the files direction path}
 }
+\value{
+avg.data list; avg.result: average result for each fragment;
+    int.result: intensity of all files
+}
 \description{
 Averge intensity of same fragment in multiple file.
 }

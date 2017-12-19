@@ -26,10 +26,10 @@ split_msms <- function(file.name){
       return(temp)
     })
 
-    result <- do.call(cbind.data.frame, result)
+    result <- do.call(cbind, result)
     colnames(result)[seq(1, ncol(result), by = 2)] <- colnames(temp.data2)
 
-    result <- data.frame(temp.data, result, stringsAsFactors = F)
+    result <- cbind(temp.data, result)
 
     temp <- paste(file.address, "[M+H].csv", sep = "/")
     write.csv(result, temp, row.names = F)
@@ -51,10 +51,10 @@ split_msms <- function(file.name){
       return(temp)
     })
 
-    result <- do.call(cbind.data.frame, result)
+    result <- do.call(cbind, result)
     colnames(result)[seq(1, ncol(result), by = 2)] <- colnames(temp.data2)
 
-    result <- data.frame(temp.data, result, stringsAsFactors = F)
+    result <- cbind(temp.data, result)
 
     temp <- paste(file.address, "[M+Na].csv", sep = "/")
     write.csv(result, temp, row.names = F)
@@ -77,10 +77,10 @@ split_msms <- function(file.name){
       return(temp)
     })
 
-    result <- do.call(cbind.data.frame, result)
+    result <- do.call(cbind, result)
     colnames(result)[seq(1, ncol(result), by = 2)] <- colnames(temp.data2)
 
-    result <- data.frame(temp.data, result, stringsAsFactors = F)
+    result <- cbind(temp.data, result)
 
     temp <- paste(file.address, "[M+NH4].csv", sep = "/")
     write.csv(result, temp, row.names = F)
@@ -102,10 +102,10 @@ split_msms <- function(file.name){
       return(temp)
     })
 
-    result <- do.call(cbind.data.frame, result)
+    result <- do.call(cbind, result)
     colnames(result)[seq(1, ncol(result), by = 2)] <- colnames(temp.data2)
 
-    result <- data.frame(temp.data, result, stringsAsFactors = F)
+    result <- cbind(temp.data, result)
 
     temp <- paste(file.address, "[M-H].csv", sep = "/")
     write.csv(result, temp, row.names = F)
@@ -128,10 +128,10 @@ split_msms <- function(file.name){
       return(temp)
     })
 
-    result <- do.call(cbind.data.frame, result)
+    result <- do.call(cbind, result)
     colnames(result)[seq(1, ncol(result), by = 2)] <- colnames(temp.data2)
 
-    result <- data.frame(temp.data, result, stringsAsFactors = F)
+    result <- cbind(temp.data, result)
 
     temp <- paste(file.address, "[M+HCOO].csv", sep = "/")
     write.csv(result, temp, row.names = F)
