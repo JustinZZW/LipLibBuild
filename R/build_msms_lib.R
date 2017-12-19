@@ -24,7 +24,7 @@ build_msms_lib <- function(dir.path=".",
 
   cat("\n");cat("-----------------------------------------\n")
   cat("Read data...\n")
-  frag.template <- readxl::read_xls(frag.template)
+  frag.template <- readxl::read_xlsx(frag.template)
   col.list <- colnames(frag.template)
   dir.create(file.path(".", "00_result"), recursive = T)
 
