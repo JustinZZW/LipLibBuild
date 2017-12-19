@@ -7,17 +7,31 @@
 build_msms_lib <- function(dir.path=".",
                            adduct=c("[M+H]", "[M+Na]", "[M+NH4]",
                                     "[M-H]", "[M+HCOO]")){
+  cat("-----------------------------------------\n")
+  cat("Check parameter...\n")
   adduct <- match.arg(adduct)
 
   file.names <- dir(dir.path)
   frag.template <- file.names[grep(x = file.names, pattern = "fragment template")]
   int.template <- file.names[grep(x = file.names, pattern = "intensity template")]
+  if (length(frag.template) == 0) {
+    stop("Please check data--no fragment template\n")
+  }
+  if (length(int.template) == 0) {
+    stop("Please check data--no intensity template\n")
+  }
 
+
+  cat("\n");cat("-----------------------------------------\n")
+  cat("Read data...\n")
   frag.template <- readxl::read_xls(frag.template)
   col.list <- colnames(frag.template)
   dir.create(file.path(".", "00_result"), recursive = T)
 
   int.template <- readr::read_csv(int.template)
+
+  cat("\n");cat("-----------------------------------------\n")
+  cat("Generate msms lib...\n")
 
   if (adduct=="[M+H]") {
     temp.idx <- grep(pattern = "HP", x = col.list)
